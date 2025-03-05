@@ -1,4 +1,4 @@
-//Pasta jogo.c contém as funções para manipular o tabuleiro e verificar vitórias.
+// Pasta jogo.c contém as funções para manipular o tabuleiro e verificar vitórias
 #include <stdio.h>
 #include "jogo.h"
 
@@ -36,8 +36,8 @@ int registrarJogada(char tabuleiro[3][3], int linha, int coluna, char jogador) {
 }
 
 // Função para verificar se alguém ganhou
-int verificarVencedor(char tabuleiro[3][3]) {
-    // Verifica linhas, colunas e diagonais
+int verificarVencedor(char tabuleiro[3][3], char jogador) {
+    // Verifica linhas colunas e diagonais
     for (int i = 0; i < 3; i++) {
         if (tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][1] == tabuleiro[i][2] && tabuleiro[i][0] != ' ')
             return 1;  // Linha vencedora
@@ -59,7 +59,7 @@ int verificarEmpate(char tabuleiro[3][3]) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (tabuleiro[i][j] == ' ') {
-                return 0;  // Se ainda tiver espaço vazio, o jogo não terminou
+                return 0;  // Se ainda tiver espaço vazio o jogo não terminou
             }
         }
     }

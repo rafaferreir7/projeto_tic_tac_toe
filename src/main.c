@@ -22,7 +22,7 @@ int main() {
         // Valida e registra a jogada
         if (registrarJogada(tabuleiro, linha, coluna, jogadorAtual)) {
             // Verifica se houve vencedor ou empate após a jogada
-            vencedor = verificarVencedor(tabuleiro);
+            vencedor = verificarVencedor(tabuleiro, jogadorAtual);  // Passa o jogadorAtual como argumento
             if (!vencedor) {
                 empate = verificarEmpate(tabuleiro);
             }
@@ -37,7 +37,6 @@ int main() {
 
     // Exibe o resultado
     if (vencedor) {
-        // Mostra o jogador vencedor, já que a alternância foi feita após o vencedor
         printf("Jogador %c venceu!\n", (jogadorAtual == 'X') ? 'O' : 'X');
     } else {
         printf("Empate!\n");
