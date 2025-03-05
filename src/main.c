@@ -1,34 +1,47 @@
+// Pasta main.c controla o fluxo principal do jogo.
 #include <stdio.h>
 #include "jogo.h"
 
 int main() {
-    char tabuleiro[3][3]; // Criação do tabuleiro 3x3
-    int jogador = 1, linha, coluna, movimentos = 0;
-    
-    inicializarTabuleiro(tabuleiro); // Inicia o tabuleiro vazio
-    
-    while (movimentos < 9) { // O jogo pode ter no máximo 9 rodadas antes de um empate
-        exibirTabuleiro(tabuleiro); // Exibe o estado atual do jogo
-        printf("Jogador %d, informe linha e coluna (0-2): ", jogador);
-        scanf("%d %d", &linha, &coluna); // Lê a jogada do jogador
+    char tabuleiro[3][3];
+    int linha, coluna;
+    int vencedor = 0;
+    int empate = 0;
+    char jogadorAtual = 'X';  // Começa com o jogador X
 
-        if (movimentoValido(tabuleiro, linha, coluna)) { // Verifica se a jogada é válida
-            fazerMovimento(tabuleiro, jogador, linha, coluna); // Registra a jogada no tabuleiro
-            movimentos++; // Contabiliza um novo movimento
+    inicializarTabuleiro(tabuleiro);
 
-            if (verificarVitoria(tabuleiro)) { // Verifica se houve um vencedor
-                exibirTabuleiro(tabuleiro);
-                printf("Jogador %d venceu!\n", jogador);
-                return 0; // Encerra o jogo
+    // Loop principal do jogo
+    while (!vencedor && !empate) {
+        exibirTabuleiro(tabuleiro);
+
+        // Solicita a jogada do jogador atual
+        printf("Jogador %c, insira a linha e coluna (0, 1 ou 2): ", jogadorAtual);
+        scanf("%d %d", &linha, &coluna);
+
+        // Valida e registra a jogada
+        if (registrarJogada(tabuleiro, linha, coluna, jogadorAtual)) {
+            // Verifica se houve vencedor ou empate após a jogada
+            vencedor = verificarVencedor(tabuleiro);
+            if (!vencedor) {
+                empate = verificarEmpate(tabuleiro);
             }
-
-            jogador = (jogador == 1) ? 2 : 1; // Alterna entre jogador 1 e jogador 2
+            // Alterna para o próximo jogador
+            jogadorAtual = (jogadorAtual == 'X') ? 'O' : 'X';
         } else {
-            printf("Movimento inválido, tente novamente.\n");
+            printf("Jogada inválida, tente novamente!\n");
         }
     }
 
     exibirTabuleiro(tabuleiro);
-    printf("Empate!\n"); // Se todos os espaços forem preenchidos e ninguém vencer, há empate
+
+    // Exibe o resultado
+    if (vencedor) {
+        // Mostra o jogador vencedor, já que a alternância foi feita após o vencedor
+        printf("Jogador %c venceu!\n", (jogadorAtual == 'X') ? 'O' : 'X');
+    } else {
+        printf("Empate!\n");
+    }
+
     return 0;
 }

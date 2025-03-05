@@ -1,19 +1,21 @@
-#ifndef JOGO_H  // Evita inclusão múltipla do mesmo cabeçalho
+// Pasta jogo.h arquivo de cabeçalho com as declarações das funções.
+
+#ifndef JOGO_H
 #define JOGO_H
 
-// Função para inicializar o tabuleiro com espaços vazios
+// Inicializa o tabuleiro
 void inicializarTabuleiro(char tabuleiro[3][3]);
 
-// Função para exibir o tabuleiro no console
+// Exibe o tabuleiro
 void exibirTabuleiro(char tabuleiro[3][3]);
 
-// Função para verificar se há um vencedor
-int verificarVitoria(char tabuleiro[3][3]);
+// Registra uma jogada
+int registrarJogada(char tabuleiro[3][3], int linha, int coluna, char jogador);
 
-// Função para verificar se um movimento é válido
-int movimentoValido(char tabuleiro[3][3], int linha, int coluna);
+// Verificar se tem um vencedor
+int verificarVencedor(char tabuleiro[3][3], char jogador);  // Agora recebe o jogador
 
-// Função para realizar o movimento do jogador no tabuleiro
-void fazerMovimento(char tabuleiro[3][3], int jogador, int linha, int coluna);
+// Verificar empate
+int verificarEmpate(char tabuleiro[3][3]);
 
-#endif // JOGO_H
+#endif
