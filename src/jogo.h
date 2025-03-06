@@ -3,19 +3,19 @@
 #ifndef JOGO_H
 #define JOGO_H
 
-// Inicializa o tabuleiro                       
+// Prepara o tabuleiro para o início do jogo, deixando tudo vazio                    
 void inicializarTabuleiro(char tabuleiro[3][3]);
 
-// Exibe o tabuleiro
+// Mostra o tabuleiro na tela
 void exibirTabuleiro(char tabuleiro[3][3]);
 
-// Registra uma jogada
+// Marca a jogada do jogador no tabuleiro, se a posição estiver livre
 int registrarJogada(char tabuleiro[3][3], int linha, int coluna, char jogador);
 
-// Verifica se tem um vencedor
-int verificarVencedor(char tabuleiro[3][3], char jogador);  // Agora recebe o jogador
+// Vê se o jogador ganhou o jogo
+int verificarVencedor(char tabuleiro[3][3], char jogador);
 
-// Verificar empate
+// Vê se deu empate (tabuleiro cheio sem vencedor)
 int verificarEmpate(char tabuleiro[3][3]);
 
 #endif

@@ -1,21 +1,21 @@
-# Makefiler compila tudo de forma automatizada.
+# Makefiler compila tudo do jogo de forma automatizada. 
 CC = gcc
 CFLAGS = -Wall -std=c99
-OBJS = main.o jogo.o
+OBJS = src/main.o src/jogo.o
 
 # Nome do executável
-EXEC = jogo_da_velha
+EXEC = src/output/jogo_da_velha
 
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) -o $(EXEC) $(OBJS)
 
-main.o: main.c jogo.h
-	$(CC) $(CFLAGS) -c main.c
+src/main.o: src/main.c src/jogo.h
+	$(CC) $(CFLAGS) -c src/main.c -o src/main.o
 
-jogo.o: jogo.c jogo.h
-	$(CC) $(CFLAGS) -c jogo.c
+src/jogo.o: src/jogo.c src/jogo.h
+	$(CC) $(CFLAGS) -c src/jogo.c -o src/jogo.o
 
 clean:
-	rm -f *.o $(EXEC)
+	rm -f src/*.o $(EXEC)

@@ -1,17 +1,17 @@
-// Pasta jogo.c contém as funções para manipular o tabuleiro e verificar vitórias
+// Pasta jogo.c contém as funções para manipular o tabuleiro e verificar as vitórias
 #include <stdio.h>
 #include "jogo.h"
 
-// Função para inicializar o tabuleiro com espaços vazios
+// Função para preencher o tabuleiro com espaços vazios para começar o jogo
 void inicializarTabuleiro(char tabuleiro[3][3]) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            tabuleiro[i][j] = ' ';  // Espaço vazio
+            tabuleiro[i][j] = ' ';  // Espaço vazio indicando que a posição está livre
         }
     }
 }
 
-// Função para exibir o tabuleiro atual
+// Função para exibir o tabuleiro atual na tela
 void exibirTabuleiro(char tabuleiro[3][3]) {
     printf("\nTabuleiro atual:\n");
     for (int i = 0; i < 3; i++) {
@@ -25,7 +25,7 @@ void exibirTabuleiro(char tabuleiro[3][3]) {
     printf("\n");
 }
 
-// Função para registrar a jogada do jogador (X ou O)
+// Função para registrar a jogada do jogador (X ou O) no tabuleiro
 int registrarJogada(char tabuleiro[3][3], int linha, int coluna, char jogador) {
     // Verifica se a posição é válida e está vazia
     if (linha >= 0 && linha < 3 && coluna >= 0 && coluna < 3 && tabuleiro[linha][coluna] == ' ') {
@@ -35,7 +35,7 @@ int registrarJogada(char tabuleiro[3][3], int linha, int coluna, char jogador) {
     return 0;  // Jogada inválida
 }
 
-// Função para verificar se alguém ganhou
+// Função para verificar se algum jogador ganhou
 int verificarVencedor(char tabuleiro[3][3], char jogador) {
     // Verifica linhas colunas e diagonais
     for (int i = 0; i < 3; i++) {
@@ -54,7 +54,7 @@ int verificarVencedor(char tabuleiro[3][3], char jogador) {
     return 0;  // Não tem vencedor
 }
 
-// Função para verificar se houve empate
+// Função para verificar se houve empate dos jogadores
 int verificarEmpate(char tabuleiro[3][3]) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
